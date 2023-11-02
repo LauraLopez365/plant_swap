@@ -121,12 +121,12 @@ class User:
                 "plant_requests" : row_from_db["plant_requests"],
                 "plant_info": row_from_db["plant_info"],
                 "user_id": row_from_db["user_id"],
-                "created_at": row_from_db["magazines.created_at"],
-                "updated_at": row_from_db["magazines.updated_at"]
+                "created_at": row_from_db["plants.created_at"],
+                "updated_at": row_from_db["plants.updated_at"]
             
             }
 
-            users_holder.magazines.append(plant_model.Plant(plant_data))
+            users_holder.plants.append(plant_model.Plant(plant_data))
 #variablename.constructor name in dojo.append can be used on the array,import name,class name, variable for new object created by the query
 #one of the rows im getting back from the join statement
 

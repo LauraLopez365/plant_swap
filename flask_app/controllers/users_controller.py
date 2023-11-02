@@ -1,11 +1,14 @@
 from flask_app import app
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_app.models.user_model import User
-from flask_app.models.magazine_model import Plant
-#need the following 2 lines to run bcrypt
+# from flask_app.models.plant_model import Plant
+# #need the following 2 lines to run bcrypt
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+@app.route("/")
+def reroute():
+    return redirect("/login")
 
 # route to login
 @app.route("/login")
@@ -67,7 +70,9 @@ def dashboard():
     
 
 #need to create new dashboard for plants info
-    return render_template("dashboard.html", this_user=this_user,magazines=Magazine.get_magazines_with_users())
+    return render_template("dashboard.html", this_user=this_user)
+
+# ,plants=Plant.get_magazines_with_users()
 
 
 
