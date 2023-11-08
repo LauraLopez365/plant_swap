@@ -8,12 +8,12 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 <nav class="nav">
-    <h1 style="color:rgb(4, 45, 45); text-align: center; font-size: 300%; font-family: cursive;">Create a New plant Swap</h1> <a href="/dashboard">Dashboard</a> <a href="/logout">Logout</a>
+    <h1 style="color:rgb(4, 45, 45); text-align: center; font-size: 300%; font-family: cursive;">Edit a plant Swap</h1> <a href="/dashboard">Dashboard</a> <a href="/logout">Logout</a>
 
 </nav>
 <body class="container_edit">
     
-    <form action="/plant_post/create" method="POST" class="col-6 mx-auto">
+    <form action="/plant/{{plant_to_edit.id}}/save_edit" method="POST" class="col-6 mx-auto">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -23,23 +23,23 @@
         {% endwith %}
         <div class="form-group mt-3">
             <label for="plant_name">Plant Name:</label>
-            <input type="text" name="plant_name" class="form-control">
+            <input type="text" name="plant_name" class="form-control" value="{{plant_to_edit.plant_name}}">
         </div>
         <div class="form-group mt-3">
             <label for="image_path">Image:</label>
-            <input type="text" name="image_path" class="form-control">
+            <input type="text" name="image_path" class="form-control" value="{{plant_to_edit.image_path}}">
         </div>
         <div class="form-group mt-3">
             <label for="plant_requests">Plants you want:</label>
-            <input type="text" name="plant_requests" class="form-control">
+            <input type="text" name="plant_requests" class="form-control" value="{{plant_to_edit.plant_requests}}">
         </div>
         <div class="form-group mt-3">
             <label for="plant_info">Plant Info:</label>
-            <input type="text" name="plant_info" class="form-control">
+            <input type="text" name="plant_info" class="form-control" value="{{plant_to_edit.plant_info}}">
         </div>
         
         <div>
-            <input id="button2" type="submit" value="Create" class="mt-3">
+            <input id="button2" type="submit" value="Save Changes" class="mt-3">
         </div>
     </form>
 </div>

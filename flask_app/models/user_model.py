@@ -13,7 +13,7 @@ from flask_app import app
 bcrypt = Bcrypt(app)
 
 #schema name in workbench cannot match a table name
-DB="plant_swapr"
+DB="plant_swap2"
 
 class User:
     def __init__(self,data):
@@ -61,14 +61,14 @@ class User:
         print("im hereeeeeeeeeeeee in get user by id")
 
         
-
+        print(id, "id in the get_user_by_id")
         query="""
         SELECT * FROM users
         WHERE id = %(id)s;
         """
-
-        results= connectToMySQL(DB).query_db(query,id) #was{"id:id"}
-        print(results)
+        data=id
+        results= connectToMySQL(DB).query_db(query,data) #was{"id:id"}
+        print(results,"idddddd")
         if len(results) == 0:
             return None
         else:

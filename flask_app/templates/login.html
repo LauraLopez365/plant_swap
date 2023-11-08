@@ -8,10 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
 
 </head>
-<body class="container" style="background-color:powderblue;">
+<body class="container">
     
 <div class="left_container">   
-    <h1 style="color:azure; text-align: center; font-size: 400%; font-family: cursive;" > Register</h1>
+    <h1 style="color:rgb(4, 52, 4); text-align: center; font-size: 400%; font-family: cursive;" > Register</h1>
 
     <form action="/register" method="POST" class="col-6 mx-auto">
         {% with messages = get_flashed_messages() %}
@@ -41,13 +41,13 @@
             <label for="confirm_pw">Confirm Password:</label>
             <input type="password" name="confirm_pw" class="form-control">
         </div>
-        <input type="submit" value="Register" class="mt-3">
+        <input id="button" type="submit" value="Register" class="mt-3">
     </form>
 </div>
 
 
 <div class="right_container">
-    <h1 style="color:azure; text-align: center; font-size: 400%; font-family:cursive;" > Login</h1>
+    <h1 style="color:rgb(4, 52, 4); text-align: center; font-size: 400%; font-family:cursive;" > Login</h1>
     <form action="/login" method="POST" class="col-6 mx-auto">
         <div class="form-group mt-3">
             <label for="Email">Enter E-mail address:</label>
@@ -58,7 +58,7 @@
             <input type="password" name="password" class="form-control">
         </div>
         
-        <input type="submit" value="Login" class="mt-3">
+        <input id="button" type="submit" value="Login" class="mt-3">
     </form>
 </div>   
 </body>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<nav class="nav">
+    <h1 style=" color:rgb(2, 47, 47); text-align: center; font-size: 300%; font-family: cursive;">Welcome, {{this_user.first_name}} !!!</h1>
+    <a href="/plant/new">Add Plant</a> <a href="/dashboard">Dashboard</a>  <a href="/user/{{this_user.id}}/edit">Account</a> <a href="/logout">Logout</a>
+</nav>
+<body class="container_edit">
+<div class="swap_container">
+    <h3 class="spacing">The swapper requested:  {{one_plant_w_creator.plant_requests}}</h3>
+
+    <form action="/plant/{{one_plant_w_creator.creator.id}}/complete_swap" method="POST">
+
+        <label for="plant_swap">Swap This Plant:</label>
+
+            <select name="plant_one" id="plant_one"> 
+
+                <option value="{{one_plant_w_creator.id}}">{{one_plant_w_creator.plant_name}}</option>
+
+            </select>
+        
+        <div class="plant_swap">
+
+        <label for="plant_swap">For your Plant:</label>
+
+            <select name="plant_two" id="plant_two">
+    {% for plant in users_plants %}
+
+                    <option  value="{{plant.id}}">{{plant.plant_name}}</option>
+                    {% endfor %}
+            </select>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </form>   
+
+                
+        
+    </div> 
+                
+</body>           

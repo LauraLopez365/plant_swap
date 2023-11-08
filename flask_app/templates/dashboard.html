@@ -7,38 +7,60 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
 </head>
-<body class="left_container" style="background-color:powderblue;">
-
-    <h1 style=" color:rgb(2, 47, 47); text-align: center; font-size: 400%; font-family: cursive;">Welcome, {{this_user.first_name}} !!!</h1>
+<nav class="nav">
+    <h1 style=" color:rgb(2, 47, 47); text-align: center; font-size: 300%; font-family: cursive;">Welcome, {{this_user.first_name}} !!!</h1>
     <a href="/plant/new">Add Plant</a>  <a href="/user/{{this_user.id}}/edit">Account</a> <a href="/logout">Logout</a>
+</nav>
+<body class="container_edit">
 
-    <div>
+
         <!-- {{this_user.id}} {{session["user_id"]}} may need to readd later -->
-        <h2>Plants to Swap</h2>
-        <table class="table table-striped">
+        <!-- <h2 style="color:forestgreen">Plants to Swap</h2> -->
+        <table class=" table table-success table-striped">
             <thead>
                 <tr>
-                    <th>Plant</th>
-                    <th>Added By</th>
+                    <th style="color:forestgreen">Plants to Swap</th>
+                    <th style="color:forestgreen">Options</th>
+                    <th style="color:forestgreen">Added By</th>
                 </tr>
             </thead>
             <tbody>
                 
-                 {% for plant in plant %}
-                   
+                {% for plant in plants %}
+                
+                <tr>
+                    <td>
+                        <a href="/plant/{{plant.id}}/show"> {{plant.plant_name}}</a>
+                    </td>
+                
+                    <td>
+                {% if plant.creator.id == session['user_id'] %} 
+                        <a href="/plant/{{plant.id}}/edit">Edit</a>
+                        <a href="/plant/{{plant.id}}/delete">Delete</a>
+                        
+                {% endif %}
+
+                {% if plant.creator.id != session['user_id'] %} 
+                        <a href="/plant/{{plant.id}}/swap">Request Swap</a>
+                {% endif %}
+                    </td>
+                
                     
-                        <td> 
-                            <a href="/plant/{{plant.id}}/show"> {{plant.plant_name}}</a>
-                        </td>
-                        <td> 
-                        <p> Added by: {{plant.user.first_name}} </p>
-                        </td>
+                    <td> 
+                        <p style="color:forestgreen"> Added by: {{plant.creator.first_name}} </p>
+                    </td>
                     
-                    </tr> 
+                </tr> 
                 {% endfor %} 
                 
             </tbody>
+        </table>
+   
+     <!-- <h3 style=" color:rgb(2, 47, 47); text-align: center; font-size: 200%; font-family: cursive;"> Swaps to complete </h3>
+     {% for each_swap in plant_swap %}
+     <p style=" color:rgb(2, 47, 47); text-align: center; font-size: 100%; font-family: cursive;"> Swap: {{plant_swap.creator.first_name}} their {{plant_swap.creator.plant_name}} for your {{plant_swap.plant_name}}</p>
+     {% endfor%} -->
 
-    
+
 </body>
 </html>
